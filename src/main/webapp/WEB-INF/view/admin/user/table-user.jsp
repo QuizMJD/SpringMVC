@@ -43,7 +43,7 @@
                                 <tbody>
                                     <tr>
                                         <th>1</th>
-                                        <td>Mark</td>
+                                        <td>Marks</td>
                                         <td>Otto</td>
                                         <td>
                                             <button class="btn btn-success">View</button>

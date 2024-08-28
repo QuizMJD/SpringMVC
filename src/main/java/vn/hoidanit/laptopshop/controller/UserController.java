@@ -34,7 +34,7 @@ public class UserController {
     @RequestMapping("/admin/user")
     public String retUserPage(Model model) {
         List<User> users = this.userService.getAllUsers();
-        System.out.println("<<--- check user---->>" + users);
+        model.addAttribute("users1", users);
         return "admin/user/table-user";
     }
 
