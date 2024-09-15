@@ -2,6 +2,8 @@ package vn.hoidanit.laptopshop.domain;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name="orders")
 public class Order {
@@ -12,6 +14,9 @@ public class Order {
     private double totalPrice;
 
     // user id
+    @ManyToOne
+    @JoinColumn(name="user_id")
+    private User user;
 
     public long getId() {
         return id;

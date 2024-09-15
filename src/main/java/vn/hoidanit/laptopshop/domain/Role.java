@@ -2,6 +2,8 @@ package vn.hoidanit.laptopshop.domain;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name="roles")
 public class Role {
@@ -10,6 +12,10 @@ public class Role {
     private Long id;
     private String name;
     private String description;
+    //1 role nhiều user
+    @OneToMany(mappedBy = "role")
+    private List<User> user;
+
 
     public Long getId() {
         return id;

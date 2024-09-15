@@ -2,6 +2,9 @@ package vn.hoidanit.laptopshop.domain;
 
 import jakarta.persistence.*;
 import jdk.jfr.Category;
+
+import java.util.List;
+
 @Entity
 @Table(name="products")
 public class Product {
@@ -17,6 +20,7 @@ public class Product {
     private Long sold;
     private String factory;
     private String target;
+    //nhiều sản phẩm với 1 user
 
     public Long getId() {
         return id;
