@@ -25,15 +25,15 @@ public class UserController {
 
     }
 
-    @RequestMapping("/")
-    public String getHomePage(Model model) {
-        List<User> arrUser = this.userService.getAllUsersByEmail("qui@gmail.com");
-        System.out.println(arrUser);
+     @RequestMapping("/")
+     public String getHomePage(Model model) {
+     List<User> arrUser = this.userService.getAllUsersByEmail("qui@gmail.com");
+     System.out.println(arrUser);
 
-        model.addAttribute("eric", "test");
-        model.addAttribute("hoidanit", "from controller with model");
-        return "hello";
-    }
+     model.addAttribute("eric", "test");
+     model.addAttribute("hoidanit", "from controller with model");
+     return "hello";
+     }
 
     @RequestMapping("/admin/user")
     public String getUserPage(Model model) {
@@ -94,7 +94,7 @@ public class UserController {
 
     @GetMapping("/admin/user/delete/{id}")
     public String getDeleteUserPage(Model model, @PathVariable long id) {
-        model.addAttribute("id", id);
+        // model.addAttribute("id", id);
         // User user = new User();
         // user.setId(id);
         // lấy id cách 1
