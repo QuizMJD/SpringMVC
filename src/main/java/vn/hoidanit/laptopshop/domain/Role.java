@@ -1,27 +1,34 @@
 package vn.hoidanit.laptopshop.domain;
 
-import jakarta.persistence.*;
-
 import java.util.List;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+
 @Entity
-@Table(name="roles")
+@Table(name = "roles")
 public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long id;
+
     private String name;
+
     private String description;
-    //1 role nhiều user
+
+    // role - one => many - users . ctrl + k . press 's'
     @OneToMany(mappedBy = "role")
-    private List<User> user;
+    private List<User> users;
 
-
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -43,10 +50,7 @@ public class Role {
 
     @Override
     public String toString() {
-        return "Role{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                '}';
+        return "Role [id=" + id + ", name=" + name + ", description=" + description + "]";
     }
+
 }
