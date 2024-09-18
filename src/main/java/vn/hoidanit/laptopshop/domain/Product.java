@@ -1,32 +1,33 @@
 package vn.hoidanit.laptopshop.domain;
 
-import jakarta.persistence.*;
-import jdk.jfr.Category;
-
-import java.util.List;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
-@Table(name="products")
+@Table(name = "products")
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long id;
+
     private String name;
     private double price;
     private String image;
-    private String detailDest;
-    private String shortDest;
-    private Long quantity;
-    private Long sold;
+    private String detailDesc;
+    private String shortDesc;
+    private long quantity;
+    private long sold;
     private String factory;
     private String target;
-    //nhiều sản phẩm với 1 user
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -54,35 +55,35 @@ public class Product {
         this.image = image;
     }
 
-    public String getDetailDest() {
-        return detailDest;
+    public String getDetailDesc() {
+        return detailDesc;
     }
 
-    public void setDetailDest(String detailDest) {
-        this.detailDest = detailDest;
+    public void setDetailDesc(String detailDesc) {
+        this.detailDesc = detailDesc;
     }
 
-    public String getShortDest() {
-        return shortDest;
+    public String getShortDesc() {
+        return shortDesc;
     }
 
-    public void setShortDest(String shortDest) {
-        this.shortDest = shortDest;
+    public void setShortDesc(String shortDesc) {
+        this.shortDesc = shortDesc;
     }
 
-    public Long getQuantity() {
+    public long getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(Long quantity) {
+    public void setQuantity(long quantity) {
         this.quantity = quantity;
     }
 
-    public Long getSold() {
+    public long getSold() {
         return sold;
     }
 
-    public void setSold(Long sold) {
+    public void setSold(long sold) {
         this.sold = sold;
     }
 
@@ -104,17 +105,9 @@ public class Product {
 
     @Override
     public String toString() {
-        return "Product{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", price=" + price +
-                ", image='" + image + '\'' +
-                ", detailDest='" + detailDest + '\'' +
-                ", shortDest='" + shortDest + '\'' +
-                ", quantity=" + quantity +
-                ", sold=" + sold +
-                ", factory='" + factory + '\'' +
-                ", target='" + target + '\'' +
-                '}';
+        return "Product [id=" + id + ", name=" + name + ", price=" + price + ", image=" + image + ", detailDesc="
+                + detailDesc + ", shortDesc=" + shortDesc + ", quantity=" + quantity + ", sold=" + sold + ", factory="
+                + factory + ", target=" + target + "]";
     }
+
 }
