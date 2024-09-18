@@ -1,4 +1,7 @@
 <!-- Featurs Section Start -->
+<%@page contentType="text/html" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!-- Featurs Section Start -->
 <div class="container-fluid featurs py-5">
     <div class="container py-5">
         <div class="row g-4">
@@ -9,7 +12,7 @@
                     </div>
                     <div class="featurs-content text-center">
                         <h5>Free Shipping</h5>
-                        <p class="mb-0">Free on order over $300</p>
+                        <p class="mb-0">Hỏa tốc trong 2h</p>
                     </div>
                 </div>
             </div>
@@ -20,7 +23,7 @@
                     </div>
                     <div class="featurs-content text-center">
                         <h5>Security Payment</h5>
-                        <p class="mb-0">100% security payment</p>
+                        <p class="mb-0">Giao dịch an toàn</p>
                     </div>
                 </div>
             </div>
@@ -31,7 +34,7 @@
                     </div>
                     <div class="featurs-content text-center">
                         <h5>30 Day Return</h5>
-                        <p class="mb-0">30 day money guarantee</p>
+                        <p class="mb-0">Đổi trả miễn phí</p>
                     </div>
                 </div>
             </div>
@@ -42,11 +45,12 @@
                     </div>
                     <div class="featurs-content text-center">
                         <h5>24/7 Support</h5>
-                        <p class="mb-0">Support every time fast</p>
+                        <p class="mb-0">Hỗ trợ nhiệt tình</p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<!-- Featurs Section End -->
 <!-- Featurs Section End -->
