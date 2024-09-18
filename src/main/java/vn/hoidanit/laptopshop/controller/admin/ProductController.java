@@ -6,7 +6,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class ProductController {
     @GetMapping("admin/product")
-    public String product() {
+    public String getProduct() {
         return "admin/product/show";
+    }
+    @GetMapping("admin/product/create")
+    public String getCreateProductPage() {
+        return "admin/product/create";
     }
 }
