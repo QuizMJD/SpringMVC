@@ -15,11 +15,11 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script>
         $(document).ready(() => {
-            const avatarFile = $("#avatarFile");
+            const avatarFile = $("#productFile");
             avatarFile.change(function (e) {
                 const imgURL = URL.createObjectURL(e.target.files[0]);
-                $("#avatarPreview").attr("src", imgURL);
-                $("#avatarPreview").css({ "display": "block" });
+                $("#productPreview").attr("src", imgURL);
+                $("#productPreview").css({ "display": "block" });
             });
         });
     </script>
@@ -43,7 +43,7 @@
                         <div class="col-md-6 col-12 mx-auto">
                             <h3>Create a product</h3>
                             <hr />
-                            <form:form method="post" action="/admin/user/create" class="row"
+                            <form:form method="post" action="/admin/product/create" class="row"
                                        enctype="multipart/form-data" modelAttribute="newProduct">
                                 <div class="mb-3 col-12 col-md-6">
                                     <label class="form-label">Name:</label>
@@ -90,8 +90,8 @@
                                     </form:select>
                                 </div>
                                 <div class="mb-3 col-12 col-md-6">
-                                    <label for="avatarFile" class="form-label">Image:</label>
-                                    <input class="form-control" type="file" id="avatarFile"
+                                    <label for="productFile" class="form-label">Image:</label>
+                                    <input class="form-control" type="file" id="productFile"
                                            accept=".png, .jpg, .jpeg" name="hoidanitFile" />
                                 </div>
                                 <div class="col-12 mb-3">

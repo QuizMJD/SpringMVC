@@ -47,7 +47,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <c:forEach var="product" items="${product2}">
+                                <c:forEach var="product" items="${product1}">
 
                                     <tr>
                                         <th>${product.id}</th>
