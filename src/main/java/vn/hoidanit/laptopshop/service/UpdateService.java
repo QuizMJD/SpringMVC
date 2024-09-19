@@ -18,6 +18,8 @@ public class UpdateService {
     }
 
     public String handleSaveUpdateFile(MultipartFile file, String targetFolder) {
+        if(file.isEmpty())
+            return "";
         String rootPath = this.servletContext.getRealPath("/resources/images");
         String finalName="";
         try {
