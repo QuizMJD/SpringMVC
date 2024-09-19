@@ -1,9 +1,13 @@
 package vn.hoidanit.laptopshop.controller.admin;
 import java.util.List;
+
+import jakarta.validation.Valid;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import vn.hoidanit.laptopshop.domain.User;
@@ -61,8 +65,17 @@ public class UserController {
     }
 
     @PostMapping(value = "/admin/user/create")
-    public String createUserPage(Model model, @ModelAttribute("newUser") User hoidanit,
+    public String createUserPage(Model model, @ModelAttribute("newUser") @Valid User hoidanit,
+                                 BindingResult bindingResult,
                                  @RequestParam("hoidanitFile") MultipartFile file) {
+    // validate
+        List<FieldError> errors = bindingResult.getFieldErrors();
+        for (FieldError error : errors ) {
+            System.out.println (error.getObjectName() + " - " + error.getDefaultMessage());
+        }
+
+
+        //
     String avatar=this.updateService.handleSaveUpdateFile(file,"avatar");
     String hashPassword=this.passwordEncoder.encode(hoidanit.getPassword());
     hoidanit.setAvatar(avatar);
