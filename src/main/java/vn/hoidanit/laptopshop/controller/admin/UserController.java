@@ -113,7 +113,7 @@ public class UserController {
             this.userService.handleSaveUser(currentUser);
         }
 
-        return "redirect:/admin/user";
+            return "redirect:/admin/user";
     }
 
     @GetMapping("/admin/user/delete/{id}")
@@ -125,10 +125,9 @@ public class UserController {
         model.addAttribute("newUser", new User());
         return "/admin/user/delete";
     }
-
     @PostMapping("/admin/user/delete")
-    public String postDeleteUser(Model model, @ModelAttribute("newUser") User hoidanit) {
-        this.userService.deleteUser(hoidanit.getId());
+    public String postDeleteUser( User dl) {
+        this.userService.deleteUser(dl.getId());
         return "redirect:/admin/user";
     }
 

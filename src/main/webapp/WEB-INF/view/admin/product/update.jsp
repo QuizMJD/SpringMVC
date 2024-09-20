@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="Hỏi Dân IT - Dự án laptopshop" />
     <meta name="author" content="Hỏi Dân IT" />
-    <title>Update Product - Hỏi Dân IT</title>
+    <title>Create Product - Hỏi Dân IT</title>
     <link href="/css/styles.css" rel="stylesheet" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script>
@@ -42,9 +42,9 @@
                 <div class="mt-5">
                     <div class="row">
                         <div class="col-md-6 col-12 mx-auto">
-                            <h3>Upadate a product</h3>
+                            <h3>Update a product</h3>
                             <hr />
-                            <form:form method="post" action="/admin/product/update" class="row"
+                            <form:form method="post" action="/admin/product/create" class="row"
                                        enctype="multipart/form-data" modelAttribute="newProduct">
                                 <c:set var="errorName">
                                     <form:errors path="name" cssClass="invalid-feedback" />
