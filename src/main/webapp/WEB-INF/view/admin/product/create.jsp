@@ -42,9 +42,9 @@
                 <div class="mt-5">
                     <div class="row">
                         <div class="col-md-6 col-12 mx-auto">
-                            <h3>Upadate a product</h3>
+                            <h3>Create a product</h3>
                             <hr />
-                            <form:form method="post" action="/admin/product/update" class="row"
+                            <form:form method="post" action="/admin/product/create" class="row"
                                        enctype="multipart/form-data" modelAttribute="newProduct">
                                 <c:set var="errorName">
                                     <form:errors path="name" cssClass="invalid-feedback" />
@@ -131,7 +131,7 @@
                                          id="avatarPreview" />
                                 </div>
                                 <div class="col-12 mb-5">
-                                    <button type="submit" class="btn btn-primary">Update</button>
+                                    <button type="submit" class="btn btn-primary">Create</button>
                                 </div>
                             </form:form>
 
