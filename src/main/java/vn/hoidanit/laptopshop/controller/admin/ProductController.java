@@ -1,5 +1,4 @@
 package vn.hoidanit.laptopshop.controller.admin;
-
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,10 +7,8 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import vn.hoidanit.laptopshop.domain.Product;
-import vn.hoidanit.laptopshop.domain.User;
 import vn.hoidanit.laptopshop.service.ProductService;
 import vn.hoidanit.laptopshop.service.UpdateService;
-import vn.hoidanit.laptopshop.service.UserService;
 
 import java.util.List;
 
@@ -74,11 +71,17 @@ public class ProductController {
 
     }
     @PutMapping("admin/product/update/")
-    public String UpdateUser(@Valid Product pr, BindingResult bindingResult, Model model) {
+    public String UpdateUser(@Valid Product pr, BindingResult bindingResult,MultipartFile file) {
         if (bindingResult.hasErrors()) {
             return "/admin/product/update";
         }
         Product currentProduct =this.productService.getProductById(pr.getId());
+        // update new image
+        if (!file.isEmpty()) {
+            String img = this.updateService.handleSaveUpdateFile(file, "product");
+            currentProduct.setImage(img);
+        }
+
         if(currentProduct!=null) {
             currentProduct.setName(pr.getName());
             currentProduct.setPrice(pr.getPrice());
@@ -99,11 +102,17 @@ public class ProductController {
         model.addAttribute("deleteProduct", new Product() );
         return "admin/product/delete";
     }
-    @PostMapping("/admin/product/delete/")
-    public String DeleteUser(Product pr) {
-       this.productService.deleteProduct(pr.getId());
-       return "redirect:/admin/product";
-    }
+
+//    @PostMapping("/admin/product/delete/")
+//    public String postDeleteProduct(Product pr) {
+//       this.productService.deleteProduct(pr.getId());
+//       return "redirect:/admin/product";
+//    }
+@PostMapping("/admin/product/delete")
+public String postDeleteProduct(Model model, @ModelAttribute("newProduct") Product pr) {
+    this.productService.deleteProduct(pr.getId());
+    return "redirect:/admin/product";
+}
 
 
 
