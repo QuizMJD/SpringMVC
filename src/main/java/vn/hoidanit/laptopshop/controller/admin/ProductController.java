@@ -58,8 +58,8 @@ public class ProductController {
     }
     @GetMapping("/admin/product/{id}")
     public String getProductDetailPage(Model model, @PathVariable Long id) {
-    Product product=productService.getProductById(id);
-    model.addAttribute("product", product);
+    Product pr=productService.getProductById(id);
+    model.addAttribute("product", pr);
     return "admin/product/detail";
 
     }
