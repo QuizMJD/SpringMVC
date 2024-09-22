@@ -20,8 +20,6 @@ public class UserController {
     private final UpdateService updateService;
     private final PasswordEncoder passwordEncoder;
 
-
-
     public UserController(UserService userService, UpdateService updateService,
                           PasswordEncoder passwordEncoder) {
         this.userService = userService;
@@ -69,10 +67,10 @@ public class UserController {
                                  BindingResult newUserbindingResult,
                                  @RequestParam("hoidanitFile") MultipartFile file) {
     // validate
-        List<FieldError> errors = newUserbindingResult.getFieldErrors();
-        for (FieldError error : errors ) {
-            System.out.println (">>>>>"+error.getField() + " - " + error.getDefaultMessage());
-        }
+//        List<FieldError> errors = newUserbindingResult.getFieldErrors();
+//        for (FieldError error : errors ) {
+//            System.out.println (">>>>>"+error.getField() + " - " + error.getDefaultMessage());
+//        }
 
         if(newUserbindingResult.hasErrors()) {
             return "/admin/user/create";
