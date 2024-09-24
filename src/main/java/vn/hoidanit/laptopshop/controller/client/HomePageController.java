@@ -33,7 +33,7 @@ public class HomePageController {
 
     @GetMapping("/")
     public String getHomePage(Model model) {
-        List<Product>products=this.ProductService.getAllProduct();
+        List<Product>products=this.ProductService.fetchAllProduct();
         model.addAttribute("product1", products);
 
 
@@ -56,7 +56,7 @@ public class HomePageController {
 
         User user= this.userService.UregisterDTOtoUser(registerDTO);
         user.setPassword(this.passwordEncoder.encode(registerDTO.getPassword()));
-        user.setRole(this.userService.getRoleByName("ROLE_USER"));
+        user.setRole(this.userService.fetchRoleByName("ROLE_USER"));
         //save
         this.userService.handleSaveUser(user);
 

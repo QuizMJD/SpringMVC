@@ -20,11 +20,11 @@ public class UserService {
         this.roleRepository = roleRepository;
     }
 
-    public List<User> getAllUsers() {
+    public List<User> fetchAllUsers() {
         return this.userRepository.findAll();
     }
 
-    public List<User> getAllUsersByEmail(String email) {
+    public List<User> fetchAllUsersByEmail(String email) {
         return this.userRepository.findByEmail(email);
     }
 
@@ -34,14 +34,14 @@ public class UserService {
         return eric;
     }
 
-    public User getUserById(Long id) {
+    public User fetchUserById(Long id) {
         return this.userRepository.findById(id).orElse(null);
     }
 
     public void deleteUser(Long id) {
         this.userRepository.deleteById(id);
     }
-    public Role getRoleByName(String name){
+    public Role fetchRoleByName(String name){
         return this.roleRepository.findByName(name);
     }
     public User UregisterDTOtoUser(RegisterDTO registerDTO) {

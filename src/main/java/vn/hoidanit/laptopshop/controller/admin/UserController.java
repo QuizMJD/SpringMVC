@@ -30,7 +30,7 @@ public class UserController {
 
      @RequestMapping("/")
      public String getHomePage(Model model) {
-     List<User> arrUser = this.userService.getAllUsersByEmail("qui@gmail.com");
+     List<User> arrUser = this.userService.fetchAllUsersByEmail("qui@gmail.com");
      System.out.println(arrUser);
 
      model.addAttribute("eric", "test");
@@ -40,7 +40,7 @@ public class UserController {
 
     @RequestMapping("/admin/user")
     public String getUserPage(Model model) {
-        List<User> users = this.userService.getAllUsers();
+        List<User> users = this.userService.fetchAllUsers();
         model.addAttribute("users1", users);
         return "admin/user/show";
     }
@@ -50,7 +50,7 @@ public class UserController {
         // System.out.println("check id" + id);
         // model.addAttribute("id", id);
         // return "admin/user/show";
-        User user = userService.getUserById(id);
+        User user = userService.fetchUserById(id);
         model.addAttribute("user", user);
         return "admin/user/detail"; // Trả về view chi tiết của user
 
@@ -80,9 +80,10 @@ public class UserController {
         //
     String avatar=this.updateService.handleSaveUpdateFile(file,"avatar");
     String hashPassword=this.passwordEncoder.encode(hoidanit.getPassword());
+
     hoidanit.setAvatar(avatar);
     hoidanit.setPassword(hashPassword);
-    hoidanit.setRole(this.userService.getRoleByName(hoidanit.getRole().getName()));
+    hoidanit.setRole(this.userService.fetchRoleByName(hoidanit.getRole().getName()));
     this.userService.handleSaveUser(hoidanit);
 
         return "redirect:/admin/user";
@@ -90,20 +91,20 @@ public class UserController {
 
     @RequestMapping("/admin/user/update/{id}")
     public String UpdateUser(Model model, @PathVariable Long id) {
-        User currentUser = this.userService.getUserById(id);
+        User currentUser = this.userService.fetchUserById(id);
         model.addAttribute("newUser", currentUser);
         return "admin/user/update"; // Trả về view chi tiết của user
     }
 
     public String getUpdateUserPage(Model model, @PathVariable long id) {
-        User currentUser = this.userService.getUserById(id);
+        User currentUser = this.userService.fetchUserById(id);
         model.addAttribute("newUser", currentUser);
         return "admin/user/update";
     }
 
     @RequestMapping(value = "/admin/user/update", method = RequestMethod.POST)
     public String PostUpdateUser(Model model, @ModelAttribute("newUser") User hoidanit) {
-        User currentUser = this.userService.getUserById(hoidanit.getId());
+        User currentUser = this.userService.fetchUserById(hoidanit.getId());
         if (currentUser != null) {
             currentUser.setAddress(hoidanit.getAddress());
             currentUser.setFullName(hoidanit.getFullName());

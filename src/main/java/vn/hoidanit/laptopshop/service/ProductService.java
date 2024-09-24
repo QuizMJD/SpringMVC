@@ -20,10 +20,10 @@ public class ProductService {
     public Product handleSaveProduct(Product product) {
         return this.productRepository.save(product);
     }
-    public List<Product>getAllProduct(){
+    public List<Product>fetchAllProduct(){
         return this.productRepository.findAll();
     }
-    public Product getProductById(Long id) {
+    public Product fetchProductById(Long id) {
         return this.productRepository.findById(id).orElse(null);
     }
     public void deleteProduct(Long id) {

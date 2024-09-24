@@ -24,7 +24,7 @@ public class ProductController {
 
     @GetMapping("/admin/product")
     public String getProductPage(Model model) {
-        List<Product> products=this.productService.getAllProduct();
+        List<Product> products=this.productService.fetchAllProduct();
         model.addAttribute("product1", products);
         return "admin/product/show";
     }
@@ -58,14 +58,14 @@ public class ProductController {
     }
     @GetMapping("/admin/product/{id}")
     public String getProductDetailPage(Model model, @PathVariable Long id) {
-    Product pr=productService.getProductById(id);
+    Product pr=productService.fetchProductById(id);
     model.addAttribute("product", pr);
     return "admin/product/detail";
 
     }
     @GetMapping("admin/product/update/{id}")
     public String getUpdateProductPage(Model model,@PathVariable Long id) {
-        Product currentProduct=productService.getProductById(id);
+        Product currentProduct=productService.fetchProductById(id);
         model.addAttribute("newProduct", currentProduct);
         return "admin/product/update";
 
@@ -75,7 +75,7 @@ public class ProductController {
         if (bindingResult.hasErrors()) {
             return "/admin/product/update";
         }
-        Product currentProduct =this.productService.getProductById(pr.getId());
+        Product currentProduct =this.productService.fetchProductById(pr.getId());
         // update new image
         if (!file.isEmpty()) {
             String img = this.updateService.handleSaveUpdateFile(file, "product");
