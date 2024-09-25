@@ -2,6 +2,7 @@ package vn.hoidanit.laptopshop.service;
 
 import java.util.List;
 
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Service;
 
 import vn.hoidanit.laptopshop.domain.Role;
@@ -25,7 +26,7 @@ public class UserService {
     }
 
     public List<User> fetchAllUsersByEmail(String email) {
-        return this.userRepository.findByEmail(email);
+        return this.userRepository.findOneByEmail(email);
     }
 
     public User handleSaveUser(User user) {
@@ -55,6 +56,9 @@ public class UserService {
     public boolean checkEmailExist(String email) {
         return this.userRepository.existsByEmail(email);
 
+    }
+    public User fetchUserByEmail(String email) {
+        return this.userRepository.findByEmail(email);
     }
 
 }
