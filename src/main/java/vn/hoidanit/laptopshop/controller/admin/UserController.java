@@ -73,7 +73,7 @@ public class UserController {
 //        }
 
         if(newUserbindingResult.hasErrors()) {
-            return "/admin/user/create";
+            return "admin/user/create";
         }
 
 
