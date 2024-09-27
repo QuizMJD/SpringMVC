@@ -122,7 +122,7 @@ public class UserController {
         // user.setId(id);
         // lấy id cách 1
         model.addAttribute("newUser", new User());
-        return "/admin/user/delete";
+        return "admin/user/delete";
     }
     @PostMapping("/admin/user/delete")
     public String postDeleteUser( User us) {
