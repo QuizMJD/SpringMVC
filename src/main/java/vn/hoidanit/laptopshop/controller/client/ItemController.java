@@ -5,7 +5,6 @@ import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import vn.hoidanit.laptopshop.domain.Product;
@@ -31,7 +30,11 @@ public class ItemController {
         HttpSession session = request.getSession(false);
         Long productId=id;
         String email=(String)session.getAttribute("email");
-        this.productService.handleAddProductToCart(email,productId);
+        this.productService.handleAddProductToCart(email,productId,session);
         return "redirect:/";
+    }
+    @GetMapping("/cart")
+    public String getCart(Model model) {
+        return "client/cart/show";
     }
 }

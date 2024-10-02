@@ -2,7 +2,6 @@ package vn.hoidanit.laptopshop.domain;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
-import vn.hoidanit.laptopshop.service.validator.StrongPassword;
 
 import java.util.List;
 
@@ -33,7 +32,8 @@ public class User {
     //
     @OneToMany(mappedBy = "user")
     private List<Order> orders;
-
+    @OneToOne(mappedBy = "user")
+    private Cart cart;
 
     public List<Order> getOrders() {
         return orders;
@@ -105,6 +105,13 @@ public class User {
 
     public void setAvatar(String avatar) {
         this.avatar = avatar;
+    }
+    public Cart getCart() {
+        return cart;
+    }
+
+    public void setCart(Cart cart) {
+        this.cart = cart;
     }
 
     @Override

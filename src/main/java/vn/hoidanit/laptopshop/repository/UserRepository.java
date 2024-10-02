@@ -1,8 +1,6 @@
 package vn.hoidanit.laptopshop.repository;
 
 import vn.hoidanit.laptopshop.domain.User;
-import vn.hoidanit.laptopshop.service.UserService;
-
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import org.springframework.stereotype.Repository;
