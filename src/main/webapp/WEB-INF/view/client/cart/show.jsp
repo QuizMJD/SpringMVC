@@ -6,7 +6,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title> ${product.name} - Laptopshop</title>
+    <title> Giỏ hàng - Laptopshop</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -42,22 +42,18 @@
      class="show w-100 vh-100 bg-white position-fixed translate-middle top-50 start-50  d-flex align-items-center justify-content-center">
     <div class="spinner-grow text-primary" role="status"></div>
 </div>
-
 <!-- Spinner End -->
 
 <jsp:include page="../layout/header.jsp" />
 
-
-
 <!-- Cart Page Start -->
 <div class="container-fluid py-5">
-
     <div class="container py-5">
-        <div>
+        <div class="mb-3">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="/">Home</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Chi Tiết Giỏ hàng</li>
+                    <li class="breadcrumb-item active" aria-current="page">Chi Tiết Giỏ Hàng</li>
                 </ol>
             </nav>
         </div>
@@ -65,156 +61,108 @@
             <table class="table">
                 <thead>
                 <tr>
-                    <th scope="col">Products</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Price</th>
-                    <th scope="col">Quantity</th>
-                    <th scope="col">Total</th>
-                    <th scope="col">Handle</th>
+                    <th scope="col">Sản phẩm</th>
+                    <th scope="col">Tên</th>
+                    <th scope="col">Giá cả</th>
+                    <th scope="col">Số lượng</th>
+                    <th scope="col">Thành tiền</th>
+                    <th scope="col">Xử lý</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <th scope="row">
-                        <div class="d-flex align-items-center">
-                            <img src="img/vegetable-item-3.png" class="img-fluid me-5 rounded-circle" style="width: 80px; height: 80px;" alt="">
-                        </div>
-                    </th>
-                    <td>
-                        <p class="mb-0 mt-4">Big Banana</p>
-                    </td>
-                    <td>
-                        <p class="mb-0 mt-4">2.99 $</p>
-                    </td>
-                    <td>
-                        <div class="input-group quantity mt-4" style="width: 100px;">
-                            <div class="input-group-btn">
-                                <button class="btn btn-sm btn-minus rounded-circle bg-light border" >
-                                    <i class="fa fa-minus"></i>
-                                </button>
+                <c:forEach var="cartDetail" items="${cartDetails}">
+                    <tr>
+                        <th scope="row">
+                            <div class="d-flex align-items-center">
+                                <img src="/images/product/${cartDetail.product.image}"
+                                     class="img-fluid me-5 rounded-circle"
+                                     style="width: 80px; height: 80px;" alt="">
                             </div>
-                            <input type="text" class="form-control form-control-sm text-center border-0" value="1">
-                            <div class="input-group-btn">
-                                <button class="btn btn-sm btn-plus rounded-circle bg-light border">
-                                    <i class="fa fa-plus"></i>
-                                </button>
+                        </th>
+                        <td>
+                            <p class="mb-0 mt-4">
+                                <a href="/product/${cartDetail.product.id}" target="_blank">
+                                        ${cartDetail.product.name}
+                                </a>
+                            </p>
+                        </td>
+                        <td>
+                            <p class="mb-0 mt-4">
+                                <fmt:formatNumber type="number" value="${cartDetail.price}" /> đ
+                            </p>
+                        </td>
+                        <td>
+                            <div class="input-group quantity mt-4" style="width: 100px;">
+                                <div class="input-group-btn">
+                                    <button
+                                            class="btn btn-sm btn-minus rounded-circle bg-light border">
+                                        <i class="fa fa-minus"></i>
+                                    </button>
+                                </div>
+                                <input type="text"
+                                       class="form-control form-control-sm text-center border-0"
+                                       value="${cartDetail.quantity}">
+                                <div class="input-group-btn">
+                                    <button
+                                            class="btn btn-sm btn-plus rounded-circle bg-light border">
+                                        <i class="fa fa-plus"></i>
+                                    </button>
+                                </div>
                             </div>
-                        </div>
-                    </td>
-                    <td>
-                        <p class="mb-0 mt-4">2.99 $</p>
-                    </td>
-                    <td>
-                        <button class="btn btn-md rounded-circle bg-light border mt-4" >
-                            <i class="fa fa-times text-danger"></i>
-                        </button>
-                    </td>
+                        </td>
+                        <td>
+                            <p class="mb-0 mt-4">
+                                <fmt:formatNumber type="number"
+                                                  value="${cartDetail.price * cartDetail.quantity}" /> đ
+                            </p>
+                        </td>
+                        <td>
+                            <button class="btn btn-md rounded-circle bg-light border mt-4">
+                                <i class="fa fa-times text-danger"></i>
+                            </button>
+                        </td>
 
-                </tr>
-                <tr>
-                    <th scope="row">
-                        <div class="d-flex align-items-center">
-                            <img src="img/vegetable-item-5.jpg" class="img-fluid me-5 rounded-circle" style="width: 80px; height: 80px;" alt="" alt="">
-                        </div>
-                    </th>
-                    <td>
-                        <p class="mb-0 mt-4">Potatoes</p>
-                    </td>
-                    <td>
-                        <p class="mb-0 mt-4">2.99 $</p>
-                    </td>
-                    <td>
-                        <div class="input-group quantity mt-4" style="width: 100px;">
-                            <div class="input-group-btn">
-                                <button class="btn btn-sm btn-minus rounded-circle bg-light border" >
-                                    <i class="fa fa-minus"></i>
-                                </button>
-                            </div>
-                            <input type="text" class="form-control form-control-sm text-center border-0" value="1">
-                            <div class="input-group-btn">
-                                <button class="btn btn-sm btn-plus rounded-circle bg-light border">
-                                    <i class="fa fa-plus"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </td>
-                    <td>
-                        <p class="mb-0 mt-4">2.99 $</p>
-                    </td>
-                    <td>
-                        <button class="btn btn-md rounded-circle bg-light border mt-4" >
-                            <i class="fa fa-times text-danger"></i>
-                        </button>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">
-                        <div class="d-flex align-items-center">
-                            <img src="img/vegetable-item-2.jpg" class="img-fluid me-5 rounded-circle" style="width: 80px; height: 80px;" alt="" alt="">
-                        </div>
-                    </th>
-                    <td>
-                        <p class="mb-0 mt-4">Awesome Brocoli</p>
-                    </td>
-                    <td>
-                        <p class="mb-0 mt-4">2.99 $</p>
-                    </td>
-                    <td>
-                        <div class="input-group quantity mt-4" style="width: 100px;">
-                            <div class="input-group-btn">
-                                <button class="btn btn-sm btn-minus rounded-circle bg-light border" >
-                                    <i class="fa fa-minus"></i>
-                                </button>
-                            </div>
-                            <input type="text" class="form-control form-control-sm text-center border-0" value="1">
-                            <div class="input-group-btn">
-                                <button class="btn btn-sm btn-plus rounded-circle bg-light border">
-                                    <i class="fa fa-plus"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </td>
-                    <td>
-                        <p class="mb-0 mt-4">2.99 $</p>
-                    </td>
-                    <td>
-                        <button class="btn btn-md rounded-circle bg-light border mt-4" >
-                            <i class="fa fa-times text-danger"></i>
-                        </button>
-                    </td>
-                </tr>
+                    </tr>
+                </c:forEach>
                 </tbody>
             </table>
         </div>
 
-        <div class="mt-5 row g4 justify-content-start">
+        <div class="mt-5 row g-4 justify-content-start">
             <div class="col-12 col-md-8">
                 <div class="bg-light rounded">
                     <div class="p-4">
-                        <h1 class="display-6 mb-4">Cart <span class="fw-normal">Total</span></h1>
+                        <h1 class="display-6 mb-4">Thông Tin <span class="fw-normal">Đơn Hàng</span>
+                        </h1>
                         <div class="d-flex justify-content-between mb-4">
-                            <h5 class="mb-0 me-4">Subtotal:</h5>
-                            <p class="mb-0">$96.00</p>
+                            <h5 class="mb-0 me-4">Tạm tính:</h5>
+                            <p class="mb-0">
+                                <fmt:formatNumber type="number" value="${totalPrice}" /> đ
+                            </p>
                         </div>
                         <div class="d-flex justify-content-between">
-                            <h5 class="mb-0 me-4">Shipping</h5>
+                            <h5 class="mb-0 me-4">Phí vận chuyển</h5>
                             <div class="">
-                                <p class="mb-0">Flat rate: $3.00</p>
+                                <p class="mb-0">0 đ</p>
                             </div>
                         </div>
-                        <p class="mb-0 text-end">Shipping to Ukraine.</p>
                     </div>
                     <div class="py-4 mb-4 border-top border-bottom d-flex justify-content-between">
-                        <h5 class="mb-0 ps-4 me-4">Total</h5>
-                        <p class="mb-0 pe-4">$99.00</p>
+                        <h5 class="mb-0 ps-4 me-4">Tổng số tiền</h5>
+                        <p class="mb-0 pe-4">
+                            <fmt:formatNumber type="number" value="${totalPrice}" /> đ
+                        </p>
                     </div>
-                    <button class="btn border-secondary rounded-pill px-4 py-3 text-primary text-uppercase mb-4 ms-4" type="button">Proceed Checkout</button>
+                    <button
+                            class="btn border-secondary rounded-pill px-4 py-3 text-primary text-uppercase mb-4 ms-4"
+                            type="button">Xác nhận đặt hàng</button>
                 </div>
             </div>
         </div>
     </div>
 </div>
 <!-- Cart Page End -->
+
 
 <jsp:include page="../layout/footer.jsp" />
 

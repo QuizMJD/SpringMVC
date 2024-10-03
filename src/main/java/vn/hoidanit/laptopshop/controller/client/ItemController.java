@@ -7,9 +7,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import vn.hoidanit.laptopshop.domain.Cart;
+import vn.hoidanit.laptopshop.domain.CartDetail;
 import vn.hoidanit.laptopshop.domain.Product;
+import vn.hoidanit.laptopshop.domain.User;
 import vn.hoidanit.laptopshop.service.ProductService;
 
+import java.util.List;
 
 
 @Controller
@@ -34,7 +38,19 @@ public class ItemController {
         return "redirect:/";
     }
     @GetMapping("/cart")
-    public String getCart(Model model) {
+    public String getCart(Model model,  HttpServletRequest request) {
+       User currentUser = new User();
+        HttpSession session = request.getSession(false);
+        Long userId = (Long) session.getAttribute("id");
+        currentUser.setId(userId);
+        Cart cart=this.productService.fetchByUser(currentUser);
+        List<CartDetail>cartDetails=cart.getCartDetails();
+        double totalPrice=0;
+        for (CartDetail cd:cartDetails){
+            totalPrice+=cd.getPrice()*cd.getQuantity();
+        }
+        model.addAttribute("cartDetails", cartDetails);
+        model.addAttribute("totalPrice", totalPrice);
         return "client/cart/show";
     }
 }
