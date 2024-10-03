@@ -13,6 +13,7 @@ import vn.hoidanit.laptopshop.domain.Product;
 import vn.hoidanit.laptopshop.domain.User;
 import vn.hoidanit.laptopshop.service.ProductService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -44,7 +45,7 @@ public class ItemController {
         Long userId = (Long) session.getAttribute("id");
         currentUser.setId(userId);
         Cart cart=this.productService.fetchByUser(currentUser);
-        List<CartDetail>cartDetails=cart.getCartDetails();
+        List<CartDetail>cartDetails=cart==null?new ArrayList<CartDetail>(): cart.getCartDetails();
         double totalPrice=0;
         for (CartDetail cd:cartDetails){
             totalPrice+=cd.getPrice()*cd.getQuantity();
