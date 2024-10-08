@@ -1,6 +1,8 @@
 package vn.hoidanit.laptopshop.service;
 
 import jakarta.servlet.http.HttpSession;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import vn.hoidanit.laptopshop.domain.Cart;
 import vn.hoidanit.laptopshop.domain.CartDetail;
@@ -33,8 +35,8 @@ public class ProductService {
         return this.productRepository.save(product);
     }
 
-    public List<Product>fetchAllProduct(){
-        return this.productRepository.findAll();
+    public Page<Product> fetchAllProduct(Pageable page) {
+        return this.productRepository.findAll(page);
     }
     public Product fetchProductById(Long id) {
         return this.productRepository.findById(id).orElse(null);
