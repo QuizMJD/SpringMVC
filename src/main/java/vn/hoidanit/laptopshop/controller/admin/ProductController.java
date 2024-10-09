@@ -27,10 +27,12 @@ public class ProductController {
 
     @GetMapping("/admin/product")
     public String getProductPage(Model model,@RequestParam("page") int page) {
-        Pageable pageable= PageRequest.of(page-1,2);
+        Pageable pageable= PageRequest.of(page-1,5);
         Page<Product> products=this.productService.fetchAllProduct(pageable);
         List<Product> productList=products.getContent();
         model.addAttribute("product1", productList);
+        model.addAttribute("currentPage", page);
+        model.addAttribute("totalPages",products.getTotalPages());
         return "admin/product/show";
     }
     @GetMapping("/admin/product/create")
