@@ -59,7 +59,8 @@ public class ItemController {
         return "client/cart/show";
     }
     @PostMapping("/delete-cart-product/{id}")
-    public String deleteCartDetail(@PathVariable long id, HttpServletRequest request) {
+    public String deleteCartDetail(@PathVariable long id, HttpServletRequest request
+    ) {
         HttpSession session = request.getSession(false);
         long cartDetailId = id;
         this.productService.handleRemoveCartDetail(cartDetailId, session);
@@ -67,7 +68,10 @@ public class ItemController {
     }
 
     @GetMapping("/products")
-    public String getProductPage(Model model, @RequestParam("page") Optional<String> pageOptional) {
+    public String getProductPage(Model model,
+                                 @RequestParam("page") Optional<String> pageOptional,
+                                 @RequestParam("name") Optional<String> nameOptional
+    ) {
         int page = 1;
         try {
             if (pageOptional.isPresent()) {
@@ -80,9 +84,10 @@ public class ItemController {
             // page = 1
             // TODO: handle exception
         }
+        String name=nameOptional.get();
 
         Pageable pageable = PageRequest.of(page - 1, 6);
-        Page<Product> prs = this.productService.fetchAllProduct(pageable);
+        Page<Product> prs = this.productService.fetchProductWithSpec(pageable,name);
         List<Product> products = prs.getContent();
 
         model.addAttribute("products", products);
