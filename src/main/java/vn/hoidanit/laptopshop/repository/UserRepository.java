@@ -2,7 +2,6 @@ package vn.hoidanit.laptopshop.repository;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import vn.hoidanit.laptopshop.domain.Product;
 import vn.hoidanit.laptopshop.domain.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 

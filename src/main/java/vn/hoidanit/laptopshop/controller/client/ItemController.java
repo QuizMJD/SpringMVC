@@ -84,9 +84,11 @@ public class ItemController {
             // page = 1
             // TODO: handle exception
         }
-        String name=nameOptional.get();
+
 
         Pageable pageable = PageRequest.of(page - 1, 6);
+//        String name=nameOptional.isPresent() ? nameOptional.get():"";
+        String name=nameOptional.get();
         Page<Product> prs = this.productService.fetchProductWithSpec(pageable,name);
         List<Product> products = prs.getContent();
 
