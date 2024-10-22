@@ -259,7 +259,10 @@
         // Add or update query parameters
         searchParams.set('page', '1');
         searchParams.set('sort', sortValue);
-
+        //reset
+        searchParams.delete('factory')
+        searchParams.delete('target')
+        searchParams.delete('price')
         if (factoryArr.length > 0) {
             searchParams.set('factory', factoryArr.join(','));
         }
