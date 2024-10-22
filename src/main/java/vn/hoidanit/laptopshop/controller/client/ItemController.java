@@ -14,6 +14,7 @@ import vn.hoidanit.laptopshop.domain.Cart;
 import vn.hoidanit.laptopshop.domain.CartDetail;
 import vn.hoidanit.laptopshop.domain.Product;
 import vn.hoidanit.laptopshop.domain.User;
+import vn.hoidanit.laptopshop.domain.dto.ProductCriteriaDTO;
 import vn.hoidanit.laptopshop.service.ProductService;
 
 import java.util.ArrayList;
@@ -69,21 +70,16 @@ public class ItemController {
     }
 
     @GetMapping("/products")
-    public String getProductPage(Model model,
-                                 @RequestParam("page") Optional<String> pageOptional,
-                                 @RequestParam("name") Optional<String> nameOptional,
-                                 @RequestParam("min-price") Optional<String> minOptional,
-                                 @RequestParam("max-price") Optional<String> maxOptional,
-                                 @RequestParam("factory") Optional<String> factoryOptional,
-                                 @RequestParam("price") Optional<String> priceOptional
+    public String getProductPage(Model model, ProductCriteriaDTO productCriteriaDTO
+
 
     ) {
 
         int page = 1;
         try {
-            if (pageOptional.isPresent()) {
+            if (productCriteriaDTO.getPage().isPresent()) {
                 // convert from String to int
-                page = Integer.parseInt(pageOptional.get());
+                page = Integer.parseInt(productCriteriaDTO.getPage().get());
             } else {
                 // page = 1
             }
@@ -95,9 +91,10 @@ public class ItemController {
 
         Pageable pageable = PageRequest.of(page - 1, 60);
 
-//         String name = nameOptional.isPresent() ? nameOptional.get() : "";
+////         String name = nameOptional.isPresent() ? nameOptional.get() : "";
 //         Page<Product> prs = this.productService.fetchProductsWithSpec(pageable,
 //         name);
+        Page<Product> prs = this.productService.fetchAllProduct(pageable);
 
 //         case 1
 //         double min = minOptional.isPresent() ? Double.parseDouble(minOptional.get()) : 0;
@@ -123,9 +120,9 @@ public class ItemController {
 //         price);
 
         // case 6
-        List<String> price = Arrays.asList(priceOptional.get().split(","));
-        Page<Product> prs = this.productService.fetchProductsWithSpec(pageable, price);
-
+//        List<String> price = Arrays.asList(priceOptional.get().split(","));
+//        Page<Product> prs = this.productService.fetchProductsWithSpec(pageable, price);
+//
 
         List<Product> products = prs.getContent();
 
