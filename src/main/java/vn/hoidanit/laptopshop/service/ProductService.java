@@ -5,6 +5,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import vn.hoidanit.laptopshop.domain.*;
+import vn.hoidanit.laptopshop.domain.dto.ProductCriteriaDTO;
 import vn.hoidanit.laptopshop.repository.CartDetailRepository;
 import vn.hoidanit.laptopshop.repository.CartRepository;
 import vn.hoidanit.laptopshop.repository.ProductRepository;
@@ -41,8 +42,26 @@ public class ProductService {
         return this.productRepository.findAll(page);
     }
 
-     public Page<Product> fetchProductsWithSpec(Pageable page, String name) {
-     return this.productRepository.findAll(ProductSpecs.nameLike(name), page);
+     public Page<Product> fetchProductsWithSpec(Pageable page, ProductCriteriaDTO productCriteriaDTO) {
+         if (productCriteriaDTO.getTarget() == null
+                 && productCriteriaDTO.getFactory() == null
+                 && productCriteriaDTO.getPrice() == null) {
+             return this.productRepository.findAll(page);
+         }
+
+         Specification<Product>combinedSpec = Specification.where(null);
+
+        if(productCriteriaDTO.getTarget() != null && productCriteriaDTO.getTarget().isPresent()) {
+            Specification<Product>currentSpecs=ProductSpecs.matchListTarget(productCriteriaDTO.getTarget().get());
+            combinedSpec=combinedSpec.and(currentSpecs);
+
+        }
+         if(productCriteriaDTO.getFactory()!=null&&productCriteriaDTO.getFactory().isPresent()) {
+             Specification<Product>currentSpecs=ProductSpecs.matchListFactory(productCriteriaDTO.getFactory().get());
+             combinedSpec=combinedSpec.and(currentSpecs);
+
+         }
+     return this.productRepository.findAll(combinedSpec, page);
      }
 
 //     case 1
